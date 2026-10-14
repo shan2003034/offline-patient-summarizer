@@ -37,6 +37,22 @@ function App() {
     }
   };
 
+  const handleSave = async () => {
+  try {
+    await axios.post('http://localhost:8080/api/save', {
+      rawNotes: patientNotes,
+      summary: summary
+    });
+    toast.success('Patient record saved successfully!');
+    setPatientNotes('');
+    setSummary('');
+    setActiveTab('history'); 
+  } catch (error) {
+    console.error(error);
+    toast.error('Failed to save record to database.');
+  }
+};
+
   return (
     <div className="min-h-screen bg-[#F0F2F5] text-[#1E293B] font-sans flex overflow-hidden">
       {/* Toast message place */}
@@ -52,6 +68,7 @@ function App() {
             isGenerating={isGenerating}
             summary={summary}
             handleGenerate={handleGenerate}
+            handleSave={handleSave}
           />
         ) : (
           <History />

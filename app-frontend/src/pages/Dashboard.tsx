@@ -9,9 +9,10 @@ interface DashboardProps {
   isGenerating: boolean;
   summary: string;
   handleGenerate: () => void;
+  handleSave: () => void;
 }
 
-export default function Dashboard({ patientNotes, setPatientNotes, isGenerating, summary, handleGenerate }: DashboardProps) {
+export default function Dashboard({ patientNotes, setPatientNotes, isGenerating, summary, handleGenerate, handleSave }: DashboardProps) {
   return (
     <main className="flex-1 p-8 overflow-y-auto max-w-7xl w-full mx-auto flex flex-col gap-8 animate-fadeIn">
       <div>
@@ -68,11 +69,13 @@ export default function Dashboard({ patientNotes, setPatientNotes, isGenerating,
               <span className="text-sm font-bold text-[#0F172A]">Structured Medical Summary</span>
             </div>
             {summary && (
-              <button className="flex items-center gap-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 px-3 py-1.5 rounded-lg text-xs font-bold transition">
-                <Save className="h-3.5 w-3.5" />
-                Save Patient Record
-              </button>
-            )}
+    <button 
+      onClick={handleSave} 
+      className="flex items-center gap-1.5 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 px-3 py-1.5 rounded-lg text-xs font-bold transition">
+      <Save className="h-3.5 w-3.5" />
+      Save Patient Record
+    </button>
+  )}
           </div>
           
           <div className="flex-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-6 overflow-y-auto min-h-[400px]">
