@@ -1,5 +1,7 @@
 import React from 'react';
 import { FileText, Sparkles, Activity, Save, Clock } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface DashboardProps {
   patientNotes: string;
@@ -18,6 +20,8 @@ export default function Dashboard({ patientNotes, setPatientNotes, isGenerating,
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 items-stretch flex-1">
+        
+        {/* Left Side: Raw Notes */}
         <div className="lg:col-span-2 bg-white border border-[#E2E8F0] rounded-2xl p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
           <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-3">
             <div className="flex items-center gap-2">
@@ -54,6 +58,7 @@ export default function Dashboard({ patientNotes, setPatientNotes, isGenerating,
           </div>
         </div>
 
+        {/* Right Side: AI Output */}
         <div className="lg:col-span-3 bg-white border border-[#E2E8F0] rounded-2xl p-6 flex flex-col gap-4 shadow-[0_4px_20px_rgba(0,0,0,0.02)]">
           <div className="flex items-center justify-between border-b border-[#F1F5F9] pb-3">
             <div className="flex items-center gap-2">
@@ -70,11 +75,23 @@ export default function Dashboard({ patientNotes, setPatientNotes, isGenerating,
             )}
           </div>
           
-          <div className="flex-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-5 overflow-y-auto min-h-[400px]">
+          <div className="flex-1 bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl p-6 overflow-y-auto min-h-[400px]">
             {summary ? (
-              <div className="text-xs text-[#334155] leading-relaxed space-y-4 whitespace-pre-wrap font-medium">
+              <ReactMarkdown 
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  h1: ({node, ...props}) => <h1 className="text-lg font-bold text-[#0F172A] mb-3 mt-4 first:mt-0" {...props} />,
+                  h2: ({node, ...props}) => <h2 className="text-base font-bold text-[#0F172A] mb-3 mt-4" {...props} />,
+                  h3: ({node, ...props}) => <h3 className="text-sm font-bold text-[#0F172A] mb-2 mt-4" {...props} />,
+                  p: ({node, ...props}) => <p className="text-xs text-[#334155] leading-relaxed mb-3" {...props} />,
+                  ul: ({node, ...props}) => <ul className="list-disc pl-5 space-y-1 mb-4" {...props} />,
+                  ol: ({node, ...props}) => <ol className="list-decimal pl-5 space-y-1 mb-4" {...props} />,
+                  li: ({node, ...props}) => <li className="text-xs text-[#334155] leading-relaxed" {...props} />,
+                  strong: ({node, ...props}) => <strong className="font-bold text-[#0F172A]" {...props} />,
+                }}
+              >
                 {summary}
-              </div>
+              </ReactMarkdown>
             ) : (
               <div className="h-full flex flex-col items-center justify-center text-center p-8 gap-3 my-auto">
                 <div className="bg-[#F1F5F9] p-4 rounded-full text-[#94A3B8]">
