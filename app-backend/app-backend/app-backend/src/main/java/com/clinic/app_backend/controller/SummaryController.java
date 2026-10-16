@@ -48,4 +48,20 @@ public class SummaryController {
         List<PatientRecord> records = patientRecordRepository.findAllByOrderByCreatedAtDesc();
         return ResponseEntity.ok(records);
     }
+
+    @GetMapping("/history/{id}")
+    public ResponseEntity<PatientRecord> getRecordById(@PathVariable Long id) {
+        return patientRecordRepository.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @DeleteMapping("/history/{id}")
+    public ResponseEntity<String> deleteRecord(@PathVariable Long id) {
+        if (patientRecordRepository.existsById(id)) {
+            patientRecordRepository.deleteById(id);
+            return ResponseEntity.ok("Record deleted successfully");
+        }
+        return ResponseEntity.notFound().build();
+    }
 }
