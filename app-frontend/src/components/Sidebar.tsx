@@ -1,5 +1,5 @@
 import React from 'react';
-import { Activity, Search, ClipboardList, History, Settings, LogOut } from 'lucide-react';
+import { Activity, ClipboardList, History, Database } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: 'dashboard' | 'history';
@@ -19,14 +19,7 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
             <span className="text-[10px] bg-emerald-50 text-emerald-600 font-semibold px-2 py-0.5 rounded-full">Offline AI</span>
           </div>
         </div>
-        <div className="relative mb-6">
-          <Search className="absolute left-3 top-2.5 h-4 w-4 text-[#94A3B8]" />
-          <input 
-            type="text" 
-            placeholder="Search..." 
-            className="w-full bg-[#F8FAFC] border border-[#E2E8F0] rounded-xl pl-9 pr-4 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#0F172A]/10 placeholder-[#94A3B8]"
-          />
-        </div>
+        
         <nav className="flex flex-col gap-1.5">
           <button 
             onClick={() => setActiveTab('dashboard')}
@@ -44,15 +37,12 @@ export default function Sidebar({ activeTab, setActiveTab }: SidebarProps) {
           </button>
         </nav>
       </div>
+      
       <div className="flex flex-col gap-2 pt-6 border-t border-[#F1F5F9]">
-        <button className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-[#64748B] hover:bg-[#F8FAFC] hover:text-[#0F172A] transition">
-          <Settings className="h-4 w-4" />
-          <span>Settings</span>
-        </button>
-        <button className="flex items-center gap-3 px-4 py-2.5 rounded-xl text-xs font-medium text-rose-500 hover:bg-rose-50/50 transition">
-          <LogOut className="h-4 w-4" />
-          <span>Log Out</span>
-        </button>
+         <div className="flex items-center gap-2 text-emerald-600 bg-emerald-50 px-3 py-2 rounded-lg">
+            <Database className="h-3.5 w-3.5" />
+            <span className="text-xs font-bold">SQLite Connected</span>
+         </div>
       </div>
     </aside>
   );
