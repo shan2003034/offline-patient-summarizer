@@ -12,7 +12,7 @@ export default function InstallGuide() {
           <p>PatientFlow relies on Ollama for offline AI processing. First, download and install it from <a href="https://ollama.com/download" target="_blank" rel="noreferrer" className="text-emerald-600 font-bold hover:underline">ollama.com</a>.</p>
           <p>After installation, open your <strong>Command Prompt (CMD)</strong> and run the following command to download the required AI model:</p>
           <div className="bg-slate-900 text-emerald-400 p-3 rounded-lg font-mono text-xs shadow-inner">
-            ollama pull llama3
+            ollama pull gemma2
           </div>
           <p className="text-xs text-slate-500 bg-slate-100 p-2 rounded border border-slate-200">
             <strong>Note:</strong> If you face connection issues, set the System Environment Variable <code className="bg-slate-200 px-1 rounded text-slate-800 font-mono">OLLAMA_HOST</code> to <code className="bg-slate-200 px-1 rounded text-slate-800 font-mono">127.0.0.1:11434</code>.
