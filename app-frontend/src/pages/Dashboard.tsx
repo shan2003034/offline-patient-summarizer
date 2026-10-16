@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { FileText, Sparkles, Activity, Save, Clock } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';

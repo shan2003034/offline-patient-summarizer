@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Plus, X, Activity, Printer, Trash2, Eye } from 'lucide-react';
 import axios from 'axios';
 import toast from 'react-hot-toast';
