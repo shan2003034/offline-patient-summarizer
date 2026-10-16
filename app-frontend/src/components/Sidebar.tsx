@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Activity, ClipboardList, History, Database } from 'lucide-react';
 
 interface SidebarProps {

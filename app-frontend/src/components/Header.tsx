@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import  { useState, useEffect } from 'react';
 import { Clock, Calendar, Activity } from 'lucide-react';
 
 export default function Header() {
